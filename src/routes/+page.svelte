@@ -1,5 +1,6 @@
 <script>
-import Check from "../Components/Check.svelte";
+import Weeks from "../Components/Weeks.svelte";
+  import "./style.css";
 </script>
 
-<Check/>        
+<Weeks/>        

@@ -1,17 +1,29 @@
 <script>
+        // export let teacherName;
+        export let weekNumber;
+
         let tab = [];
-
-
-
-                let names = [
+        let names = [
                 { studentName: "Abdel" },
                 { studentName: "Gregory" },
-                { studentName: "Georges" },
+                { studentName: "Georgio" },
                 { studentName: "Mishka" },
                 { studentName: "Mira" },
-                { studentName: "Eberskin" },
+                { studentName: "Eliot" },
+                { studentName: "Matt" },
+                { studentName: "Maria" },
+                { studentName: "Evret" },
+                { studentName: "Maïa" },
+                { studentName: "Malo" },
+                 { studentName: "Mirabel" },
+                { studentName: "Elea" },
+                { studentName: "Anderson" },
+                { studentName: "Lilian" },
+                { studentName: "Charly" },
+                { studentName: "Orliane" },
+                { studentName: "Arnold" },
         ];
-    
+
         function isChecked(e) {
                 //récupération du nom de l'élève
                 let studentName = e.target.parentNode.textContent.trim();
@@ -19,6 +31,7 @@
                 if (e.target.checked) {
                         console.log(studentName + " est présent");
                         tab.push(studentName);
+                        tab = [...tab];
                         console.log(tab);
                 } else {
                         console.log(studentName + " est absent");
@@ -28,17 +41,15 @@
                         if (studentIndex !== -1) {
                                 tab.splice(studentIndex, 1);
                         }
-                         tab = tab; 
                         console.log(tab);
+                        tab = [...tab];
                 }
         }
-        $: studentsChecked = tab.join(', ');
 </script>
 
 <div class="container">
-        <h1>Nom du prof</h1>
         <div class="grid">
-                <div class="week">Semaine 38</div>
+                <div class="week">{weekNumber}</div>
                 <div class="wrapper-students">
                         {#each names as student}
                                 <div class="students">
@@ -47,43 +58,113 @@
                                 </div>
                         {/each}
                 </div>
+                <div class="wrapper-studentWritten">
+                        <p>Les élèves présents cette semaine:</p>
+                        <p class="tabItemsWritten">
+                                &nbsp;
+                                {#each tab as item}
+                                        {item}, &nbsp;
+                                {/each}
+                        </p>
+                </div>
         </div>
 </div>
-<div>{tab.join(', ')}</div>
 
 <style>
         .container {
                 display: flex;
                 flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin-top: 50px;
+                height: 100%;
         }
 
         .grid {
-                display: grid;
-                grid-template-columns: repeat(10, 1fr);
-                grid-template-rows: repeat(auto);
-                border: solid 1px grey;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                margin-bottom: 50px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.297);
+                border-radius: 20px;
+                background-color: rgb(214, 213, 213);
+                padding: 10px;
+                height: 100%;
+                width: 90%;
         }
 
         .wrapper-students {
                 display: flex;
                 flex-direction: column;
-                grid-column: 1;
-                grid-row: auto;
+                margin-top: -20px;
+                gap: 10px;
+                margin-top: 130px;
+                width: 60%;
         }
         .students {
-                border: 1px solid grey;
-                min-width: 200px;
+                border: 1px solid rgb(214, 213, 213);
                 display: flex;
+                align-items: center;
                 justify-content: space-between;
-                padding: 10px;
+                gap: 30px;
+                padding: 14px;
+                border-radius: 10px;
+                font-size: 1.2rem;
+                border: rgb(236, 236, 236) solid 3px;
         }
         .week {
-                border: 1px solid grey;
-                min-width: 200px;
+                position: absolute;
                 display: flex;
-                justify-content: space-between;
-                padding: 10px;
+                top: 30px;
+                left: 30px;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid grey;
+                padding: 30px;
                 background-color: brown;
                 color: white;
+                max-width: 50px;
+                max-height: 50px;
+                border-radius: 10px;
+                box-shadow: inset 0px 0px 5px 1px rgb(0, 0, 0);
+                font-weight: 900;
         }
+        .wrapper-studentWritten {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 20px;
+                margin-top: 50px;
+                margin-bottom: 30px;
+                width: 100%;
+        }
+        .tabItemsWritten {
+                display: flex;
+                align-items: center;
+                justify-content:flex-start;
+                color: rgb(21, 91, 212);
+                font-weight: 700;
+                background-color: white;
+                box-shadow: inset 0px 0px 10px 2px rgba(0, 0, 0, 0.297);
+                border-radius: 10px;
+                max-height: 600px;
+                width: 90%;
+                padding: 15px;
+                font-size: 1.2rem;
+        }
+        .check {
+                height: 40px;
+                width: 40px;
+                background-color: white;
+                color: blue;
+        }
+        p{
+                font-size: 1.1rem;
+                font-weight: 700;
+        }
+
+       
 </style>
